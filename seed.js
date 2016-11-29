@@ -1,3 +1,5 @@
+// creates dummy data for testing purposes (vs using real data from the database)
+
 'use strict';
 
 const Sequelize = require('sequelize');
@@ -5,7 +7,8 @@ const sequelizeConnection = require('./db');
 const Song = require('./models/song-model');
 const Artist = require('./models/artist-model');
 
-//create the artists table. using {force: true} will forcefully drop (aka delete) the artists table if it already exists
+// .sync creates the artists table
+// using {force: true} will forcefully drop (aka delete) the artists table if it already exists: avoid duplicates
 Artist.sync({force: true})
 .then(() => {
   //create the songs table

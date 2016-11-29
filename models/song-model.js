@@ -3,10 +3,13 @@ const sequelizeConnection = require('../db');
 const Artist = require('./artist-model');
 
 // create the Song model
-var Song = sequelizeConnection.define('song', {
-  title: {type: Sequelize.STRING},
-  youtube_url: {type: Sequelize.STRING}
-});
+var Song = sequelizeConnection.define(
+	'song', // model name
+	{ // Song schema used to create the 'song' model:
+	  title: {type: Sequelize.STRING},
+	  youtube_url: {type: Sequelize.STRING}
+	}
+);
 
 //joining Song and Artist tables. this will aumatically add an 'artistId' field to the songs table
 //see the docs for more info: http://docs.sequelizejs.com/en/latest/docs/associations/

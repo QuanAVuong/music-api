@@ -1,9 +1,12 @@
 const express = require('express');
 const app = express();
-const path = require('path');
+
+const path = require('path'); // mostly: path.join()
 const bodyParser = require('body-parser');
+
 const Sequelize = require('sequelize');
-const sequelizeConnection = require('./db');
+const sequelizeConnection = require('./db'); // making a new sequelize connection to the database
+
 const Song = require('./models/song-model');
 const Artist = require('./models/artist-model');
 
