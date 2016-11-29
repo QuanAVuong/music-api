@@ -93,3 +93,9 @@ app.get("/api/songs/first-five", (req, res) => {
 	})
 	.then( firstFive => res.send(firstFive) )
 })
+
+// 8. /api/artists GET all artists
+app.get("/api/artists", (req, res) => {
+	Artist.findAll()
+	.then(	artists => res.send(artists) )
+})
