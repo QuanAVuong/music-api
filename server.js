@@ -119,3 +119,13 @@ app.get("/api/artists/name/:name", (req, res) => {
 	Artist.findOne(	{ where: {name: req.params.name} } )
 	.then( artist => res.send(artist) )
 })
+
+// 12. /api/artists/no-jungle GET all artists except for 'Jungle'
+app.get("/api/artists/no-jungle", (req, res) => {
+	Artist.findAll({
+		where: {
+			$not: [ {name: "Jungle"} ]
+		}
+	})
+	.then( artists => res.send(artists) )
+})
