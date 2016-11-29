@@ -99,3 +99,11 @@ app.get("/api/artists", (req, res) => {
 	Artist.findAll()
 	.then(	artists => res.send(artists) )
 })
+
+// 9. /api/artists/sort/a-z GET all artists sorted alphabetically
+app.get("/api/artists/sort/a-z", (req, res) => {
+	Artist.findAll({
+		order: [ ["name"] ]
+	})
+	.then( sortedArtists => res.send(sortedArtists))
+})
