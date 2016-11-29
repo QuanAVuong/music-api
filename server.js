@@ -107,3 +107,9 @@ app.get("/api/artists/sort/a-z", (req, res) => {
 	})
 	.then( sortedArtists => res.send(sortedArtists))
 })
+
+// 10. /api/artists/id/:id GET specific artist by id
+app.get("/api/artists/id/:id", (req, res) => {
+	Artist.findById( req.params.id )
+	.then( artist => res.send(artist) )
+})
