@@ -23,5 +23,33 @@ app.get('/view/artists-search', (req, res) => {res.sendFile(path.join(__dirname,
 app.get('/view/youtube-search', (req, res) => {res.sendFile(path.join(__dirname, '/views/youtube-search.html'))});
 
 //////////
-// YOUR CODE HERE:
+// YOUR CODE HERE: API ENDPOINTS
 //////////
+
+// no express router at this point
+// simple api routes:
+// 
+// /api/songs GET all songs
+app.get('/api/songs', (req, res) => {
+	Song.findAll(  // no argument: find all
+		// {
+		// 	where: {
+		// 		title:
+		// 	}
+		// }
+	)
+	.then( data => {
+		console.log(data);
+		res.send(data);
+	} )
+})
+
+// /api/songs/id/:id GET specific song by id
+app.get('/api/songs/id/:id', (req, res) => {
+  Song.findById(req.params.id)
+  .then( song => res.send(song)
+  )
+});
+
+
+
