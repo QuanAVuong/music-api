@@ -59,21 +59,28 @@ app.get("/api/songs/name/:name", (req, res) => {
 
 // 4. /api/songs/sort/by-date GET all songs and order by date created
 
-// app.get("/api/songs/sort/by-date", (req, res) => {
-// 	Song.findAll(
-// 		order: [ // takes an array of items to order the query by
-
-// 		]
-// 	)
-// 	.then( songs => res.send(songs) )
-// })
+app.get("/api/songs/sort/by-date", (req, res) => {
+	Song.findAll({
+		order: [ // takes an array of items to order the query by
+			["createdAt", "DESC"]
+		]
+	})
+	.then( songs => res.send(songs) )
+})
 
 // 5. api/songs/sort/a-z GET all songs sorted alphabetically by title
 app.get("/api/songs/sort/a-z", (req, res) => {
 	Song.findAll({
 		order: [ // takes an array of items to order the query by
-			["title", "ASC"]
+			["title", "ASC"] // "ASC" optional/default
 		]
 	})
 	.then( songs => res.send(songs) )
+})
+
+// 6. api/songs/count GET the count of the number of songs in the database
+app.get("/api/songs/count", (req, res) => {
+	Song.count()
+	.then( count => res.send("There are " + count + " entries in the songs table")
+	)
 })
