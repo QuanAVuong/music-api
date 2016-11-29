@@ -29,7 +29,7 @@ app.get('/view/youtube-search', (req, res) => {res.sendFile(path.join(__dirname,
 // no express router at this point
 // simple api routes:
 // 
-// /api/songs GET all songs
+// 1. /api/songs GET all songs
 app.get('/api/songs', (req, res) => {
 	Song.findAll(  // no argument: find all
 		// {
@@ -44,12 +44,17 @@ app.get('/api/songs', (req, res) => {
 	} )
 })
 
-// /api/songs/id/:id GET specific song by id
+// 2. /api/songs/id/:id GET specific song by id
 app.get('/api/songs/id/:id', (req, res) => {
   Song.findById(req.params.id)
   .then( song => res.send(song)
   )
 });
 
+// 3. /api/songs/name/:name GET specific song by name
+app.get("/api/songs/name/:name", (req, res) => {
+	Song.findOne( {where: {title: req.params.name} } )
+	.then( title => res.send(title) )
+})
 
-
+// 4. /api/songs/sort/by-date GET all songs and order by date created
