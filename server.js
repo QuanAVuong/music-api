@@ -27,7 +27,7 @@ app.get('/view/youtube-search', (req, res) => {res.sendFile(path.join(__dirname,
 //////////
 
 // no express router at this point
-// simple api routes:
+// simple api routes: NOTE: NEED "/" in front of "api/...""
 // 
 // 1. /api/songs GET all songs
 app.get('/api/songs', (req, res) => {
@@ -83,4 +83,13 @@ app.get("/api/songs/count", (req, res) => {
 	Song.count()
 	.then( count => res.send("There are " + count + " entries in the songs table")
 	)
+})
+
+// 7. api/songs/first-five GET the first five songs, ordered by date created. You should return exactly five songs.
+app.get("/api/songs/first-five", (req, res) => {
+	Song.findAll({
+		limit: 5,
+		order: [ ["createdAt", "DESC"] ]
+	})
+	.then( firstFive => res.send(firstFive) )
 })
