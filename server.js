@@ -58,3 +58,22 @@ app.get("/api/songs/name/:name", (req, res) => {
 })
 
 // 4. /api/songs/sort/by-date GET all songs and order by date created
+
+// app.get("/api/songs/sort/by-date", (req, res) => {
+// 	Song.findAll(
+// 		order: [ // takes an array of items to order the query by
+
+// 		]
+// 	)
+// 	.then( songs => res.send(songs) )
+// })
+
+// 5. api/songs/sort/a-z GET all songs sorted alphabetically by title
+app.get("/api/songs/sort/a-z", (req, res) => {
+	Song.findAll({
+		order: [ // takes an array of items to order the query by
+			["title", "ASC"]
+		]
+	})
+	.then( songs => res.send(songs) )
+})
