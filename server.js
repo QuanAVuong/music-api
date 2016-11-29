@@ -113,3 +113,9 @@ app.get("/api/artists/id/:id", (req, res) => {
 	Artist.findById( req.params.id )
 	.then( artist => res.send(artist) )
 })
+
+// 11. /api/artists/name/:name GET specific artist by name
+app.get("/api/artists/name/:name", (req, res) => {
+	Artist.findOne(	{ where: {name: req.params.name} } )
+	.then( artist => res.send(artist) )
+})
